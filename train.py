@@ -26,7 +26,6 @@ pred = model.predict(X_test)
 acc = accuracy_score(y_test, pred)
 print("Accuracy:", acc)
 
-
 cm = confusion_matrix(y_test, pred)
 disp = ConfusionMatrixDisplay(confusion_matrix=cm)
 disp.plot()
