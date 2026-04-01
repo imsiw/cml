@@ -4,7 +4,7 @@ jobs:
   train:
     name: Train job
     runs-on: ubuntu-latest
-    container: docker://iterativeai/cml:0-dvc2-base1
+    container: docker://iterativeai/cml:latest
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
@@ -13,7 +13,7 @@ jobs:
       - name: Setup Python
         uses: actions/setup-python@v4
         with:
-          python-version: 3.11
+          python-version: 3.12
 
 
       - name: Install dependencies
