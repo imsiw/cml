@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import ConfusionMatrixDisplay, accuracy_score, confusion_matrix
-from xgboost import XGBClassifier
+from xgboost import XGBClassifier, plot_importance
 
 
 df = pd.read_csv("titanic.csv")
@@ -22,10 +22,7 @@ X_train, X_test, y_train, y_test = train_test_split(
 )
 
 
-model = XGBClassifier(
-    n_estimators=1,
-    max_depth=1
-)
+model = XGBClassifier()
 model.fit(X_train, y_train)
 
 
@@ -39,3 +36,7 @@ disp = ConfusionMatrixDisplay(confusion_matrix=cm)
 disp.plot()
 plt.title("Confusion Matrix")
 plt.savefig("plot.png")
+
+plot_importance(model)
+plt.title("Feature importanace")
+plt.savefig("plot2.png")
