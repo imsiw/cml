@@ -23,7 +23,7 @@ X_train, X_test, y_train, y_test = train_test_split(
 
 
 model = XGBClassifier(
-    n_estimators=5,
+    n_estimators=1,
     max_depth=1
 )
 model.fit(X_train, y_train)
