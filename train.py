@@ -6,9 +6,13 @@ from xgboost import XGBClassifier
 
 
 df = pd.read_csv("titanic.csv")
-df = df[['Survived', 'Pclass', 'Sex', 'Age', 'Fare']]
+df = df[['Survived', 'Pclass', 'Sex', 'Age', 'Fare', 'SibSp', 'Parch']]
 df['Sex'] = df['Sex'].map({'male': 0, 'female': 1})
 df['Age'] = df['Age'].fillna(df['Age'].median())
+df['family_size'] = df['SibSp'] + df['Parch'] + 1 # adding new feature
+df['is_child'] = (df['Age'] < 16).astype(int) # adding new feature
+df = df[['Survived', 'Pclass', 'Sex', 'Age', 'Fare', 'family_size', 'is_child']]
+
 
 
 X = df.drop('Survived', axis=1)
@@ -25,6 +29,7 @@ model.fit(X_train, y_train)
 pred = model.predict(X_test)
 acc = accuracy_score(y_test, pred)
 print("Accuracy:", acc)
+
 
 cm = confusion_matrix(y_test, pred)
 disp = ConfusionMatrixDisplay(confusion_matrix=cm)
