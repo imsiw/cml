@@ -15,6 +15,9 @@ jobs:
           python-version: 3.12
 
 
+      - name: Setup CML
+        uses: interactive/setup-cml@v2
+
       - name: Install dependencies
         run: |
           pip install -r requirements.txt
