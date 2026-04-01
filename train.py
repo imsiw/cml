@@ -35,7 +35,7 @@ cm = confusion_matrix(y_test, pred)
 disp = ConfusionMatrixDisplay(confusion_matrix=cm)
 disp.plot()
 plt.title("Confusion Matrix")
-plt.savefig("plot.png")
+plt.savefig("plot1.png")
 
 plot_importance(model)
 plt.title("Feature importanace")
